@@ -10,7 +10,8 @@ import {
 } from "react-native";
 
 import { type ArticleType, ArticleService } from "@/src/services";
-import { useAppSafeAreaInsets } from "@/src/hooks";
+
+import { useAppSafeAreaInsets, useDebouncing } from "@/src/hooks";
 
 import { ArticlePreview, Header, SearchInput } from "@/src/components";
 
@@ -21,8 +22,9 @@ export default function Search() {
   /**** Constants ****/
   const router = useRouter();
   const { bottom } = useAppSafeAreaInsets();
+  const debouncedSearchQuery = useDebouncing(searchQuery, 500);
   const { data: searchResults, isLoading } =
-    ArticleService.useSearchArticles(searchQuery);
+    ArticleService.useSearchArticles(debouncedSearchQuery);
 
   const renderItem = useCallback(
     ({ item }: { item: ArticleType }) => (
@@ -80,11 +82,13 @@ export default function Search() {
         }}
       />
 
-      <SearchInput
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-        onClear={() => setSearchQuery("")}
-      />
+      <View style={{ paddingHorizontal: 16 }}>
+        <SearchInput
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          onClear={() => setSearchQuery("")}
+        />
+      </View>
 
       <FlatList
         renderItem={renderItem}

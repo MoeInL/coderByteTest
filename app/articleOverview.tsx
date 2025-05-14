@@ -41,7 +41,7 @@ export default function ArticleOverview() {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={[styles.container, { paddingBottom: bottom }]}
     >
-      <Image source={{ uri: image }} style={styles.image} />
+      <Image contentFit="cover" style={styles.image} source={{ uri: image }} />
 
       <View style={styles.headerContainer}>
         <Header

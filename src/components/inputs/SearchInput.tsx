@@ -19,27 +19,25 @@ const SearchInput: React.FC<SearchInputProps> = ({
   ...props
 }) => {
   return (
-    <View style={{ padding: 16 }}>
-      <View style={styles.inputContainer}>
-        <MaterialIcons name="search" size={24} color="#666" />
+    <View style={styles.inputContainer}>
+      <MaterialIcons name="search" size={24} color="#666" />
 
-        <TextInput
-          value={value}
-          autoCorrect={false}
-          style={styles.input}
-          autoCapitalize="none"
-          returnKeyType="search"
-          onChangeText={onChangeText}
-          placeholder="Search articles..."
-          {...props}
-        />
+      <TextInput
+        value={value}
+        autoCorrect={false}
+        style={styles.input}
+        autoCapitalize="none"
+        returnKeyType="search"
+        onChangeText={onChangeText}
+        placeholder="Search articles..."
+        {...props}
+      />
 
-        {value ? (
-          <TouchableOpacity onPress={onClear} style={{ padding: 4 }}>
-            <MaterialIcons name="close" size={20} color="#666" />
-          </TouchableOpacity>
-        ) : null}
-      </View>
+      {value ? (
+        <TouchableOpacity onPress={onClear} style={{ padding: 4 }}>
+          <MaterialIcons name="close" size={20} color="#666" />
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };
