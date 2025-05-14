@@ -4,7 +4,7 @@ import React from "react";
 
 import { useAppSafeAreaInsets } from "@/src/hooks";
 
-interface HeaderProps {
+type HeaderProps = {
   title?: string;
   leadingIcon?: {
     name: keyof typeof MaterialIcons.glyphMap;
@@ -14,7 +14,7 @@ interface HeaderProps {
     name: keyof typeof MaterialIcons.glyphMap;
     onPress: () => void;
   };
-}
+};
 
 export const Header: React.FC<HeaderProps> = ({
   title,

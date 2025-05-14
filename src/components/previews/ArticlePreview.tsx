@@ -5,10 +5,10 @@ import React from "react";
 
 import type { ArticleType } from "@/src/services";
 
-interface ArticlePreviewProps {
+type ArticlePreviewProps = {
   article: ArticleType;
   onPress?: () => void;
-}
+};
 
 const ArticlePreview: React.FC<ArticlePreviewProps> = ({
   article,
@@ -24,24 +24,28 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({
         <Text style={styles.title} numberOfLines={2}>
           {article.title}
         </Text>
+
         <Text style={styles.description} numberOfLines={2}>
           {article.description}
         </Text>
+
         <View style={styles.footer}>
           <View style={styles.sourceContainer}>
             <MaterialIcons name="link" size={14} color="#666" />
-            <Text style={styles.sourceText}>{article.source.name}</Text>
+            <Text style={styles.textStyle}>{article.source.name}</Text>
           </View>
-          <Text style={styles.date}>
+
+          <Text style={styles.textStyle}>
             {new Date(article.publishedAt).toLocaleDateString()}
           </Text>
         </View>
       </View>
+
       {article.image && (
         <Image
-          source={{ uri: article.image }}
+          contentFit="cover"
           style={styles.image}
-          resizeMode="cover"
+          source={{ uri: article.image }}
         />
       )}
     </TouchableOpacity>
@@ -52,11 +56,11 @@ export default ArticlePreview;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
     padding: 16,
+    flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
     backgroundColor: "white",
+    borderBottomColor: "#f0f0f0",
   },
   content: {
     flex: 1,
@@ -64,9 +68,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: "600",
     color: "#333",
     marginBottom: 4,
+    fontWeight: "600",
   },
   description: {
     fontSize: 14,
@@ -75,19 +79,15 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   sourceContainer: {
+    gap: 4,
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
   },
-  sourceText: {
-    fontSize: 12,
-    color: "#666",
-  },
-  date: {
+  textStyle: {
     fontSize: 12,
     color: "#666",
   },

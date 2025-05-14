@@ -4,10 +4,10 @@ import React from "react";
 
 import type { ArticleType } from "@/src/services";
 
-interface ArticleCardProps {
+type ArticleCardProps = {
   article: ArticleType;
   onPress?: () => void;
-}
+};
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, onPress }) => {
   return (
@@ -17,7 +17,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, onPress }) => {
       style={styles.container}
     >
       <Image
-        resizeMode="cover"
+        contentFit="cover"
         style={styles.image}
         source={{ uri: article.image }}
       />
